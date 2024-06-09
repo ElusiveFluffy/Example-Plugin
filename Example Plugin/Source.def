@@ -1,0 +1,4 @@
+LIBRARY "Example Plugin"
+
+EXPORTS
+TygerFrameworkPluginInitialize
