@@ -62,9 +62,6 @@
     <ClCompile Include="Include\ImGui\imgui.cpp">
       <Filter>Include\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Include\ImGui\imgui_demo.cpp">
-      <Filter>Include\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="Include\ImGui\imgui_draw.cpp">
       <Filter>Include\ImGui</Filter>
     </ClCompile>
