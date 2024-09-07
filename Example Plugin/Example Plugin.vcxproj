@@ -157,6 +157,7 @@
     <ClInclude Include="API.h" />
     <ClInclude Include="API.hpp" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Include\ImGui\backends\imgui_impl_win32.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Include\ImGui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Include\ImGui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="Include\ImGui\imgui.cpp" />
