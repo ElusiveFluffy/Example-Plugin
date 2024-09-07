@@ -19,6 +19,9 @@
     <Filter Include="Include\ImGui">
       <UniqueIdentifier>{ba450b12-8ab7-4c15-bb21-eeddf197897f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\ImGui\backends">
+      <UniqueIdentifier>{c42c66f1-e79c-4074-a431-566d7ecf1915}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -51,6 +54,15 @@
     <ClInclude Include="Include\ImGui\imstb_truetype.h">
       <Filter>Include\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3.h">
+      <Filter>Include\ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3_loader.h">
+      <Filter>Include\ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_win32.h">
+      <Filter>Include\ImGui\backends</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -70,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="Include\ImGui\imgui_widgets.cpp">
       <Filter>Include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\ImGui\backends\imgui_impl_opengl3.cpp">
+      <Filter>Include\ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\ImGui\backends\imgui_impl_win32.cpp">
+      <Filter>Include\ImGui\backends</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

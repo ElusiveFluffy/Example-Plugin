@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>Include\ImGui;$(IncludePath)</IncludePath>
+    <IncludePath>Include\ImGui\backends;Include\ImGui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -157,6 +157,9 @@
     <ClInclude Include="API.h" />
     <ClInclude Include="API.hpp" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Include\ImGui\backends\imgui_impl_win32.h" />
     <ClInclude Include="Include\ImGui\imconfig.h" />
     <ClInclude Include="Include\ImGui\imgui.h" />
     <ClInclude Include="Include\ImGui\imgui_internal.h" />
@@ -167,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Include\ImGui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Include\ImGui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="Include\ImGui\imgui.cpp" />
     <ClCompile Include="Include\ImGui\imgui_draw.cpp" />
     <ClCompile Include="Include\ImGui\imgui_tables.cpp" />
