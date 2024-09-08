@@ -27,6 +27,9 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
     //Make sure to cast this, otherwise TygerFramework won't get the return value
     param->functions->PluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
 
+    //Set the inital elements used in the TygerFramework window
+    GUI::SetFrameworkImGuiElements();
+
     //Example log messages
     API::LogPluginMessage("Hello World From Example Plugin!");
     API::LogPluginMessage("Plugin Received Ty " + std::to_string(API::WhichTyGame()) + " as the Current Game");

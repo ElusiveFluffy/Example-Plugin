@@ -1,5 +1,6 @@
 #include "GUI.h"
 #include "framework.h"
+#include <filesystem>
 
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
@@ -61,4 +62,27 @@ void GUI::DrawUI() {
 //To block clicks from the game when the window is focused
 bool GUI::ImGuiHasFocus() {
     return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow);
+}
+
+void GUI::SetFrameworkImGuiElements()
+{
+    namespace fs = std::filesystem;
+    //Setting the values for GUI to render on the TygerFramework window
+    //Only a few basic elements avaliable as its mainly intended to just be for adding basic stuff to the TygerFramework window 
+    std::vector<TygerFrameworkImGuiParam> TygerFrameworkImguiElements = { {CollapsingHeader, "Example Plugin"},
+                                                                          {Text, "Files in Ty Directory Example"},
+                                                                          {SameLine},
+                                                                          {Text, "(?)"},
+                                                                          {SetTooltip, "Just an Example of Iterating and Adding Elements"},
+                                                                          {TreePush, "Example Plugin"} };
+    //Looping through elements and adding them
+    for (auto&& entry : fs::directory_iterator{ fs::current_path() }) {
+        auto&& path = entry.path();
+        TygerFrameworkImguiElements.push_back({ Text, path.filename().string()});
+    }
+
+    TygerFrameworkImguiElements.push_back({ TreePop });
+    API::SetTygerFrameworkImGuiElements(TygerFrameworkImguiElements);
+
+    API::LogPluginMessage("Set TygerFramework ImGui Functions");
 }

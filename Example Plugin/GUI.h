@@ -6,5 +6,7 @@ namespace GUI
 	void Initialize();
 	void DrawUI();
 	bool ImGuiHasFocus();
+
+	void SetFrameworkImGuiElements();
 };
 
