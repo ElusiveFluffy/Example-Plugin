@@ -2,3 +2,4 @@ LIBRARY "Example Plugin"
 
 EXPORTS
 TygerFrameworkPluginInitialize
+TygerFrameworkPluginRequiredVersion

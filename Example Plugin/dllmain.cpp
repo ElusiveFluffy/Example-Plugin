@@ -18,6 +18,17 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
+//Recommended so your plugin doesn't get loaded with a loader version lower than the API needs, causing a crash
+EXTERN_C void TygerFrameworkPluginRequiredVersion(TygerFrameworkPluginVersion* version) {
+    //Specifiy the version number defined in the API
+    version->Major = TygerFrameworkPluginVersion_Major;
+    version->Minor = TygerFrameworkPluginVersion_Minor;
+    version->Patch = TygerFrameworkPluginVersion_Patch;
+
+    //Optional if you only want the plugin to run for a specific game //Optional (If the plugin is compatible with 2 or more games write it out like 12 for Ty 1 and 2. 13 for Ty 1, and 3. Etc. Leave unchanged for any game)
+    //version->GameNumber = 1;
+}
+
 EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam* param) {
     //Make sure to call this first before any API Functions
     API::Initialize(param);
