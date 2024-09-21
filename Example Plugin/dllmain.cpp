@@ -18,6 +18,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
+//Ticks before the game does
+void TickBeforeGame(float deltaSeconds) {
+    //Tick functionality here
+}
+
 //Recommended so your plugin doesn't get loaded with a loader version lower than the API needs, causing a crash
 EXTERN_C void TygerFrameworkPluginRequiredVersion(TygerFrameworkPluginVersion* version) {
     //Specifiy the version number defined in the API
@@ -34,9 +39,11 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
     API::Initialize(param);
 
     //Subcribe functions to TygerFramework events
-    param->functions->DrawPluginUI(GUI::DrawUI);
+    param->functions->AddDrawPluginUI(GUI::DrawUI);
     //Make sure to cast this, otherwise TygerFramework won't get the return value
-    param->functions->PluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
+    param->functions->AddPluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
+
+    param->functions->AddTickBeforeGame(TickBeforeGame);
 
     //Set the inital elements used in the TygerFramework window
     GUI::SetFrameworkImGuiElements();
