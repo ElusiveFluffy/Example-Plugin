@@ -20,7 +20,7 @@ bool WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 void GUI::Initialize() {
 
     //Make sure to cast this, otherwise TygerFramework won't get the return value
-    API::Get()->param()->functions->AddPluginWndProc((WndProcFunc)WndProc);
+    API::AddPluginWndProc((WndProcFunc)WndProc);
 
     //Setup ImGui Context
     ImGui::CreateContext();

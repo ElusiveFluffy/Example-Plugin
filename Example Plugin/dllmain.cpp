@@ -39,11 +39,11 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
     API::Initialize(param);
 
     //Subcribe functions to TygerFramework events
-    param->functions->AddDrawPluginUI(GUI::DrawUI);
+    API::AddDrawPluginUI(GUI::DrawUI);
     //Make sure to cast this, otherwise TygerFramework won't get the return value
-    param->functions->AddPluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
+    API::AddPluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
 
-    param->functions->AddTickBeforeGame(TickBeforeGame);
+    API::AddTickBeforeGame(TickBeforeGame);
 
     //Set the inital elements used in the TygerFramework window
     GUI::SetFrameworkImGuiElements();
