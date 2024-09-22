@@ -38,6 +38,12 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
     //Make sure to call this first before any API Functions
     API::Initialize(param);
 
+    //Example of using the error message on init
+    //if (Error Condition) {
+    //    param->initErrorMessage = "Input what is wrong here";
+    //    return false;
+    //}
+
     //Subcribe functions to TygerFramework events
     API::AddDrawPluginUI(GUI::DrawUI);
     //Make sure to cast this, otherwise TygerFramework won't get the return value
