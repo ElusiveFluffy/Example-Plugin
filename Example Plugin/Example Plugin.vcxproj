@@ -154,8 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="API.h" />
-    <ClInclude Include="API.hpp" />
+    <ClInclude Include="TygerFrameworkAPI.h" />
+    <ClInclude Include="TygerFrameworkAPI.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Include\ImGui\backends\imgui_impl_opengl3.h" />

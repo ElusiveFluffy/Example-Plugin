@@ -6,7 +6,7 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_win32.h"
 
-#include "API.hpp"
+#include "TygerFrameworkAPI.hpp"
 
 //WndProc to be able to interact with imgui or block any WndProc from interacting with the Ty window
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

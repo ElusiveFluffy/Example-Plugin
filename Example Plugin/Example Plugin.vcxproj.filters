@@ -30,10 +30,10 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API.h">
+    <ClInclude Include="TygerFrameworkAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API.hpp">
+    <ClInclude Include="TygerFrameworkAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\ImGui\imconfig.h">
@@ -63,6 +63,9 @@
     <ClInclude Include="Include\ImGui\backends\imgui_impl_win32.h">
       <Filter>Include\ImGui\backends</Filter>
     </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Include\ImGui\backends\imgui_impl_win32.cpp">
       <Filter>Include\ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
