@@ -4,8 +4,6 @@
 #include <fstream>
 #include "GUI.h"
 
-using namespace TygerFrameworkAPI; // For API class
-
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
