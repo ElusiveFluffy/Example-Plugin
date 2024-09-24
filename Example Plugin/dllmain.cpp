@@ -28,8 +28,8 @@ EXTERN_C void TygerFrameworkPluginRequiredVersion(TygerFrameworkPluginVersion* v
     version->Minor = TygerFrameworkPluginVersion_Minor;
     version->Patch = TygerFrameworkPluginVersion_Patch;
 
-    //Optional if you only want the plugin to run for a specific game //Optional (If the plugin is compatible with 2 or more games write it out like 12 for Ty 1 and 2. 13 for Ty 1, and 3. Etc. Leave unchanged for any game)
-    //version->GameNumber = 1;
+    //Optional if you only want the plugin to run for a specific game //Optional (List all the game numbers the plugin is compatible with (1 = Ty 1, 2 = Ty 2, 3 = Ty 3). Leave unchanged if it supports any game)
+    //version->CompatibleGames = {1};
 }
 
 EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam* param) {
