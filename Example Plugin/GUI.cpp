@@ -11,8 +11,9 @@
 //WndProc to be able to interact with imgui or block any WndProc from interacting with the Ty window
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 bool WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
-        return true;
+    if (API::DrawingGUI())
+        if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
+            return true;
     return false;
 }
 
@@ -59,8 +60,9 @@ void GUI::DrawUI() {
 }
 
 //To block clicks from the game when the window is focused
-bool GUI::ImGuiHasFocus() {
-    return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow);
+bool GUI::ImGuiWantCaptureMouse() {
+    //WantCaptureMouse works better than window focus
+    return ImGui::GetIO().WantCaptureMouse;
 }
 
 void GUI::SetFrameworkImGuiElements()

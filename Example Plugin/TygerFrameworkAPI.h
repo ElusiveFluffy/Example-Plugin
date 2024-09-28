@@ -4,7 +4,7 @@
 
 constexpr int TygerFrameworkPluginVersion_Major = 1;
 constexpr int TygerFrameworkPluginVersion_Minor = 0;
-constexpr int TygerFrameworkPluginVersion_Patch = 0;
+constexpr int TygerFrameworkPluginVersion_Patch = 1;
 
 typedef struct {
 	int Major;
@@ -41,12 +41,12 @@ typedef struct {
 }TygerFrameworkImGuiParam;
 
 typedef void (*DrawUIFunc)();
-typedef bool (*ImGuiHasFocusFunc)();
+typedef bool (*ImGuiWantCaptureMouseFunc)();
 typedef bool (*WndProcFunc)(HWND, UINT, WPARAM, LPARAM);
 typedef void (*TickBeforeGameFunc)(float);
 
 typedef bool (*TyFDrawPluginUI)(std::string, DrawUIFunc);
-typedef bool (*TyFPluginImGuiHasFocus)(std::string, ImGuiHasFocusFunc);
+typedef bool (*TyFPluginImGuiWantCaptureMouse)(std::string, ImGuiWantCaptureMouseFunc);
 typedef bool (*TyFPluginWndProc)(std::string, WndProcFunc);
 typedef bool (*TyFTickBeforeGame)(std::string, TickBeforeGameFunc);
 
@@ -54,7 +54,7 @@ typedef struct {
 	void (*LogPluginMessage)(std::string message, LogLevel logLevel);
 	int (*CurrentTyGame)();
 	TyFDrawPluginUI AddDrawPluginUI;
-	TyFPluginImGuiHasFocus AddPluginImGuiHasFocus;
+	TyFPluginImGuiWantCaptureMouse AddPluginImGuiWantCaptureMouse;
 	TyFPluginWndProc AddPluginWndProc;
 	HWND(*GetTyWindowHandle)();
 	bool (*DrawingGUI)(); //Only use for imgui if you have a special use case
@@ -64,7 +64,7 @@ typedef struct {
 }TygerFrameworkPluginFunctions;
 
 typedef struct {
-	void* tygerFrameworkModule;
+	void* TyHModule;
 	std::string pluginFileName;
 	const TygerFrameworkPluginFunctions* functions;
 	std::string initErrorMessage; //Error message that gets read by TygerFramework if the plugin can't initialize (returning false on initialize)

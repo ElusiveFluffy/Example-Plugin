@@ -5,7 +5,7 @@ namespace GUI
 
 	void Initialize();
 	void DrawUI();
-	bool ImGuiHasFocus();
+	bool ImGuiWantCaptureMouse();
 
 	void SetFrameworkImGuiElements();
 };

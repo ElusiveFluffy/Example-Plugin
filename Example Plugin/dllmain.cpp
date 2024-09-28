@@ -45,7 +45,7 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
     //Subcribe functions to TygerFramework events
     API::AddDrawPluginUI(GUI::DrawUI);
     //Make sure to cast this, otherwise TygerFramework won't get the return value
-    API::AddPluginImGuiHasFocus((ImGuiHasFocusFunc)GUI::ImGuiHasFocus);
+    API::AddPluginImGuiWantCaptureMouse((ImGuiWantCaptureMouseFunc)GUI::ImGuiWantCaptureMouse);
 
     API::AddTickBeforeGame(TickBeforeGame);
 
@@ -54,7 +54,7 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
 
     //Example log messages
     API::LogPluginMessage("Hello World From Example Plugin!");
-    API::LogPluginMessage("Plugin Received Ty " + std::to_string(API::WhichTyGame()) + " as the Current Game");
+    API::LogPluginMessage("Plugin Received Ty " + std::to_string(API::CurrentTyGame()) + " as the Current Game");
     API::LogPluginMessage("Warning Test", Warning);
     API::LogPluginMessage("Error Test", Error);
     return true;
