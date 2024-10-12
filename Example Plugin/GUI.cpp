@@ -83,6 +83,10 @@ void GUI::SetFrameworkImGuiElements()
     }
 
     TygerFrameworkImguiElements.push_back({ TreePop });
+
+    TygerFrameworkImguiElements.push_back({ CollapsingHeader, "Example Plugin Header 2" });
+    TygerFrameworkImguiElements.push_back({ TextWrapped, "Example How to Use 2 Collapsing Headers" });
+
     API::SetTygerFrameworkImGuiElements(TygerFrameworkImguiElements);
 
     API::LogPluginMessage("Set TygerFramework ImGui Functions");
