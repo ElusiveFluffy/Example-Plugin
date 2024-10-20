@@ -1,12 +1,15 @@
 #pragma once
-namespace GUI
+#include "framework.h"
+class GUI
 {
-	static bool init;
+public:
+	static inline bool init = false;
 
-	void Initialize();
-	void DrawUI();
-	bool ImGuiWantCaptureMouse();
+	static void Initialize();
+	static void DrawUI();
+	static bool ImGuiWantCaptureMouse();
+	static bool WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-	void SetFrameworkImGuiElements();
+	static void SetFrameworkImGuiElements();
 };
 

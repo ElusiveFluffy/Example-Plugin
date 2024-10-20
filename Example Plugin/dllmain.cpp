@@ -44,6 +44,10 @@ EXTERN_C bool TygerFrameworkPluginInitialize(TygerFrameworkPluginInitializeParam
 
     //Subcribe functions to TygerFramework events
     API::AddDrawPluginUI(GUI::DrawUI);
+
+    //Make sure to cast this, otherwise TygerFramework won't get the return value
+    API::AddPluginWndProc((WndProcFunc)GUI::WndProc);
+
     //Make sure to cast this, otherwise TygerFramework won't get the return value
     API::AddPluginImGuiWantCaptureMouse((ImGuiWantCaptureMouseFunc)GUI::ImGuiWantCaptureMouse);
 

@@ -81,11 +81,20 @@ public:
 		Get()->param()->functions->SetTyFImGuiElements(PluginName, elements);
 	}
 
+	static bool SetTyBlockedInputs(TyBlockedInputsFlags flags) {
+		return Get()->param()->functions->SetTyBlockedInputs(PluginName, flags);
+	}
+
+	//Get the input state of the game set by this plugin (the plugin state could still be blocked by another plugin though)
+	static TyBlockedInputsFlags GetTyBlockedInputState() {
+		return Get()->param()->functions->GetTyBlockedInputState(PluginName);
+	}
+
 	//--------------------------
 	//Event subscriber functions
 	//--------------------------
 
-	static bool AddDrawPluginUI(DrawUIFunc func) {
+	static bool AddDrawPluginUI(VoidFunc func) {
 		return Get()->param()->functions->AddDrawPluginUI(PluginName, func);
 	}
 
@@ -99,6 +108,14 @@ public:
 
 	static bool AddTickBeforeGame(TickBeforeGameFunc func) {
 		return Get()->param()->functions->AddTickBeforeGame(PluginName, func);
+	}
+
+	static bool AddOnTyInitialize(VoidFunc func) {
+		return Get()->param()->functions->AddOnTyInitialized(PluginName, func);
+	}
+
+	static bool AddOnTyBeginShutdown(VoidFunc func) {
+		return Get()->param()->functions->AddOnTyBeginShutdown(PluginName, func);
 	}
 
 private:

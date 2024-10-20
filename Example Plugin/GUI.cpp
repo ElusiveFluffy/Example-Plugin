@@ -10,7 +10,40 @@
 
 //WndProc to be able to interact with imgui or block any WndProc from interacting with the Ty window
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-bool WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+bool GUI::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    if (msg == WM_KEYDOWN) {
+        //Just keybinds to test and show toggling the blocked input state
+        switch (wParam) {
+        //[{
+        case VK_OEM_4: {
+            auto inputState = API::GetTyBlockedInputState();
+            //XOR auto toggles it on and off
+            API::SetTyBlockedInputs(inputState ^ NoMouseInput);
+            //Don't need to block anything
+            return false;
+        }
+        //']}'
+        case VK_OEM_6: {
+            auto inputState = API::GetTyBlockedInputState();
+            //XOR auto toggles it on and off
+            API::SetTyBlockedInputs(inputState ^ NoKeyboardInput);
+            //Don't need to block anything
+            return false;
+        }
+        //'\|'
+        case VK_OEM_5: {
+            auto inputState = API::GetTyBlockedInputState();
+            //Toggle both at the same time
+            //If any are set this will be true
+            if (inputState)
+                API::SetTyBlockedInputs(None);
+            else
+                API::SetTyBlockedInputs(NoKeyboardInput | NoMouseInput);
+            //Don't need to block anything
+            return false;
+        }
+        }
+    }
     if (API::DrawingGUI())
         if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
             return true;
@@ -18,9 +51,6 @@ bool WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 }
 
 void GUI::Initialize() {
-
-    //Make sure to cast this, otherwise TygerFramework won't get the return value
-    API::AddPluginWndProc((WndProcFunc)WndProc);
 
     //Setup ImGui Context
     ImGui::CreateContext();
@@ -62,7 +92,9 @@ void GUI::DrawUI() {
 //To block clicks from the game when the window is focused
 bool GUI::ImGuiWantCaptureMouse() {
     //WantCaptureMouse works better than window focus
-    return ImGui::GetIO().WantCaptureMouse;
+    //Minimal evaluation used here, if the GUI isn't initialized it won't check the want capture mouse from ImGui
+    //This is to avoid a crash if adding the WndProc event in the TygerFrameworkPluginInitialize if the UI is closed by default
+    return GUI::init && ImGui::GetIO().WantCaptureMouse;
 }
 
 void GUI::SetFrameworkImGuiElements()
