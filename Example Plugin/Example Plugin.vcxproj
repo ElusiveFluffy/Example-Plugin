@@ -90,7 +90,7 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(OutDir)Example Plugin.dll" "D:\SteamLibrary\steamapps\common\TY the Tasmanian Tiger\Plugins\Example Plugin.dll"</Command>
+      <Command>copy "$(OutDir)Example Plugin.dll" "D:\SteamLibrary\steamapps\common\TY the Tasmanian Tiger\Debug Plugins\Example Plugin.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

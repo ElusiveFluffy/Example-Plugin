@@ -14,33 +14,42 @@ bool GUI::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     if (msg == WM_KEYDOWN) {
         //Just keybinds to test and show toggling the blocked input state
         switch (wParam) {
-        //[{
+        // /?
+        case VK_OEM_2: {
+            //Always sets NoMouseInput to be enabled but keeping all other flags enabled
+            API::SetTyInputFlag(NoMouseInput, true);
+            break;
+        }
+        // [{
         case VK_OEM_4: {
-            auto inputState = API::GetTyBlockedInputState();
+            auto inputState = API::GetTyInputState();
             //XOR auto toggles it on and off
-            API::SetTyBlockedInputs(inputState ^ NoMouseInput);
-            //Don't need to block anything
-            return false;
+            API::SetTyInputState(inputState ^ NoMouseInput);
+            break;
         }
-        //']}'
+        // ]}
         case VK_OEM_6: {
-            auto inputState = API::GetTyBlockedInputState();
-            //XOR auto toggles it on and off
-            API::SetTyBlockedInputs(inputState ^ NoKeyboardInput);
-            //Don't need to block anything
-            return false;
+            //Sets the entire state to only have NoKeyboardInput enable
+            API::SetTyInputState(NoKeyboardInput);
+            break;
         }
-        //'\|'
+        // \|
         case VK_OEM_5: {
-            auto inputState = API::GetTyBlockedInputState();
+            auto inputState = API::GetTyInputState();
             //Toggle both at the same time
             //If any are set this will be true
             if (inputState)
-                API::SetTyBlockedInputs(None);
+                API::SetTyInputState(None);
             else
-                API::SetTyBlockedInputs(NoKeyboardInput | NoMouseInput);
-            //Don't need to block anything
-            return false;
+                API::SetTyInputState(NoKeyboardInput | NoMouseClickInput | NoMouseCameraInput);
+            break;
+        }
+        // '"
+        case VK_OEM_7: {
+            auto inputState = API::GetTyInputState();
+            //XOR auto toggles it on and off. Shows the cursor and unlocks it
+            API::SetTyInputState(inputState ^ TyShowCursor);
+            break;
         }
         }
     }

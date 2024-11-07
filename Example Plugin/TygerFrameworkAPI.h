@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <filesystem>
 
 //Needed for the WndProc inputs usually in precompiled headers but that needs to be turned off for imgui
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
@@ -41,12 +42,16 @@ enum TyFImGuiElements {
 };
 
 //Flags to block Ty from receiving inputs like mouse clicks
-enum TyBlockedInputsFlags {
+enum TyInputsFlags {
 	None = 0,
-	NoMouseInput = 1 << 0,
-	NoKeyboardInput = 1 << 1
+	NoMouseClickInput = 1 << 0,
+	NoMouseCameraInput = 1 << 1,
+	NoKeyboardInput = 1 << 2,
+	TyShowCursor = 1 << 3,
+
+	NoMouseInput = NoMouseClickInput | NoMouseCameraInput
 };
-DEFINE_ENUM_FLAG_OPERATORS(TyBlockedInputsFlags)
+DEFINE_ENUM_FLAG_OPERATORS(TyInputsFlags)
 
 typedef struct {
 	TyFImGuiElements ImGuiElement;
@@ -65,20 +70,26 @@ typedef bool (*TyFTickBeforeGame)(std::string, TickBeforeGameFunc);
 
 //Order of these matters to be backwards compatible
 typedef struct {
+	//v0.1
 	void (*LogPluginMessage)(std::string message, LogLevel logLevel);
 	int (*CurrentTyGame)();
+
+	//v1.0.0
 	TyFDrawPluginUI AddDrawPluginUI;
 	TyFPluginImGuiWantCaptureMouse AddPluginImGuiWantCaptureMouse;
 	TyFPluginWndProc AddPluginWndProc;
 	HWND(*GetTyWindowHandle)();
-	bool (*DrawingGUI)(); //Only use for imgui if you have a special use case
+	bool (*DrawingGUI)();
 	void (*SetImGuiFont)(void* imguiFont);
 	void (*SetTyFImGuiElements)(std::string pluginName, std::vector<TygerFrameworkImGuiParam> params);
 	TyFTickBeforeGame AddTickBeforeGame;
+
+	//v1.1.0
 	bool (*AddOnTyInitialized)(std::string, VoidFunc);
 	bool (*AddOnTyBeginShutdown)(std::string, VoidFunc);
-	bool (*SetTyBlockedInputs)(std::string pluginName, TyBlockedInputsFlags flags);
-	TyBlockedInputsFlags(*GetTyBlockedInputState)(std::string pluginName);
+	bool (*SetTyInputState)(std::string pluginName, TyInputsFlags flags);
+	TyInputsFlags(*GetTyInputState)(std::string pluginName);
+	std::filesystem::path(*GetPluginDir)();
 }TygerFrameworkPluginFunctions;
 
 //Order of these matters to be backwards compatible
