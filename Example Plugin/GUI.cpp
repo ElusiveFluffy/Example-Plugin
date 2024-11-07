@@ -112,6 +112,17 @@ void GUI::SetFrameworkImGuiElements()
     //Setting the values for GUI to render on the TygerFramework window
     //Only a few basic elements avaliable as its mainly intended to just be for adding basic stuff to the TygerFramework window 
     std::vector<TygerFrameworkImGuiParam> TygerFrameworkImguiElements = { {CollapsingHeader, "Example Plugin"},
+
+                                                                          {CollapsingHeader, "Header Inside a Header"},
+                                                                          {Text, "Example of a Header Inside a Header"},
+                                                                          {NewLine},
+                                                                          {CollapsingHeader, "Header Inside a Header 2"},
+                                                                          {TextWrapped, "Example of a Header Inside a Header, Inside a Header"},
+                                                                          {Text, "The Ultimate Headerception"},
+                                                                          {NewLine},
+                                                                          {CollapsingHeaderEnd}, //Close the current header
+                                                                          {CollapsingHeaderEnd}, //Close the current header
+
                                                                           {Text, "Files in Ty Directory Example"},
                                                                           {SameLine},
                                                                           {Text, "(?)"},
@@ -124,9 +135,12 @@ void GUI::SetFrameworkImGuiElements()
     }
 
     TygerFrameworkImguiElements.push_back({ TreePop });
+    //Close the header so anything after this won't be inside this header
+    TygerFrameworkImguiElements.push_back({ CollapsingHeaderEnd });
 
     TygerFrameworkImguiElements.push_back({ CollapsingHeader, "Example Plugin Header 2" });
     TygerFrameworkImguiElements.push_back({ TextWrapped, "Example How to Use 2 Collapsing Headers" });
+    //Doesn't require the collapsing header end element for this one as there is nothing being added after this
 
     API::SetTygerFrameworkImGuiElements(TygerFrameworkImguiElements);
 
